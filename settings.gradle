@@ -4,9 +4,7 @@ pluginManagement {
     }
 }
 rootProject.name = 'rabbitmq'
-include(':consumer')
-include(':producer')
+include('consumer')
+include('producer')
 
-project(':consumer').projectDir = "$rootDir/consumer" as File
-project(':producer').projectDir = "$rootDir/producer" as File
 
