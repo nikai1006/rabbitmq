@@ -1,1 +1,6 @@
+server:
+  port: 29090
 
+spring:
+  application:
+    name: rabbitmq-producer

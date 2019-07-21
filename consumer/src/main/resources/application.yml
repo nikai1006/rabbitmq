@@ -1,1 +1,5 @@
-
+spring:
+  application:
+    name: rabbitmq-consumer
+server:
+  port: 18080
