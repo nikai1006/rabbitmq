@@ -1,4 +1,4 @@
-package com.nikai.demo.rabbitmq;
+package com.nikai.demo.rabbitmq.producer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
