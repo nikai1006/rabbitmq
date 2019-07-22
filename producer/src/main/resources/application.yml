@@ -10,5 +10,6 @@ spring:
     username: guest
     password: guest
 
-
+logstash.host: localhost
+logstash.port: 5044
 
