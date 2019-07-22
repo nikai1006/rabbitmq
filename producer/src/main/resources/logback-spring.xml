@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+  <springProperty scope="context" name="springAppName" source="spring.application.name"></springProperty>
+
+
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+  <!-- 综合时间与大小的滚动策略，先按天滚动，天内的文件大于10mb时再按大小滚动，最多保留7天 -->
+  <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>./logs/${springAppName}.log.tmp</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/${springAppName}-%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>100MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS}
+        [mina,%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%thread] %-5level
+        %logger{36} - %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+    <destination>localhost:5044</destination>
+    <encoder chaset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+      <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS}
+        [mina,%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] [%thread] %-5level
+        %logger{36} - %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <root level="INFO">
+    <springProfile name="default,dev,test">
+      <appender-ref ref="console"/>
+    </springProfile>
+    <springProfile name="test,prd">
+      <appender-ref ref="rollingFile"/>
+      <appender-ref ref="logstash"/>
+    </springProfile>
+  </root>
+</configuration>
+
