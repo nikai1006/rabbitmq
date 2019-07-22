@@ -28,7 +28,7 @@
     </encoder>
   </appender>
 
-  <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+  <!--<appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
     <destination>${logHost}:${logPort}</destination>
     <encoder chaset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
       <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS}
@@ -36,7 +36,7 @@
         %logger{36} - %msg%n
       </pattern>
     </encoder>
-  </appender>
+  </appender>-->
 
   <root level="INFO">
     <springProfile name="default,dev,test">
