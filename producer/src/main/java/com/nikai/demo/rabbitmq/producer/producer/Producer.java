@@ -18,9 +18,10 @@ public class Producer {
     @Autowired
     RabbitTemplate rabbitTemplate;
 
-    public void send()
-    {
-        rabbitTemplate.convertAndSend("","","");
+    public void send() {
+        rabbitTemplate.convertAndSend("DIRECT_EXCHANGE", "nikai.queue", "a direct msg");
+        rabbitTemplate.convertAndSend("TOPIC_EXCHANGE", "w.nikai.n", "a topic msg");
+        rabbitTemplate.convertAndSend("FANOUT_EXCHANGE", "", "a fanout msg");
 
     }
 }
