@@ -8,6 +8,9 @@ import com.rabbitmq.client.ConnectionFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 队列的过期时间决定了在没有任何消费者以后，队列可以存活多久。
+ */
 public class TTLQueue {
 
     public static void main(String[] args) throws Exception {
