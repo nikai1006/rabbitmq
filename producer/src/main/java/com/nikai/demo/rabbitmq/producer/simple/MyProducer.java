@@ -1,4 +1,4 @@
-package com.nikai.demo.rabbitmq.producer;
+package com.nikai.demo.rabbitmq.producer.simple;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class MyProducer {
 
-    private final static String QUEUE_NAME = "ORIGIN_QUEUE";
+    private final static String QUEUE_NAME = "NIKAI_SIMPLE_ORIGIN_QUEUE";
 
     public static void main(String[] args) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
